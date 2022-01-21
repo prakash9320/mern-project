@@ -5,17 +5,17 @@ const app = express();
 
 dotenv.config({ path: './config.env' });
 
+   const PORT = process.env.PORT
 require('./db/conn' );
-// const User = require('./model/userSchema');
+//  constUser = require('./model/userSchema');
 
 app.use(express.json());
 
 // we link the router files to make our route easy 
 app.use(require('./router/auth'));
 
-const PORT = process.env.PORT;
 
- 
+    
 // Middelware 
 const middleware = (req,res, next) => {
     console.log(`Hello my Middleware`);
@@ -42,9 +42,13 @@ app.get('/signin', (req, res) => {
 app.get('/signup', (req, res) => {
     res.send(`Hello Registration world from the server`);
 });
-
+  
 app.listen(PORT, () => {
     console.log(`server is runnig at port no ${PORT}`);
 })
 
+
+// app.listen(3000,()=>{
+//     console.log("Server is Running at port 3000")
+// })
 
