@@ -42,14 +42,14 @@ router.get('/', async (req, res) => {
     if(userExist){
       return res.status(422).json({error :"Email Alredy Exits"}); 
     }
-    const User = new user({name ,email,  phone, work,  password, cpassword });
+    const User = new user({name ,email, phone, work,  password, cpassword });
      
          await User.save();
 
   res.status(201).json({messege:"user Register successfully "})
        
       }catch(err){
-        console.log(err);
+        console.log(err)
       }
 
 
