@@ -28,7 +28,7 @@ router.get('/', async (req, res) => {
 //      }).catch((err) =>{console.log(err); })
      
 // });
- // =====================asynct-await ==============================
+ // ===================================================
 
   router.post('/register',async (req, res) => {
            // call all objects in one line 
@@ -43,10 +43,11 @@ router.get('/', async (req, res) => {
       return res.status(422).json({error :"Email Alredy Exits"}); 
     }
     const User = new user({name ,email,  phone, work,  password, cpassword });
-       await user.save();
-       res.status(201).json({messege:"user Register successfully "});
-   
-         
+     
+         await User.save();
+
+  res.status(201).json({messege:"user Register successfully "})
+       
       }catch(err){
         console.log(err);
       }
