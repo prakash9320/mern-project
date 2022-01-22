@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
 
 router.post('/register', (req, res) => {
     console.log(req.body);
-    res.json({ message: req.body });
+    res.json({ details: req.body });
     // res.send("mera register page");
 });
 
