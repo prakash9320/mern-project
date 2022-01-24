@@ -1,4 +1,5 @@
 const express = require('express');
+const { route } = require('express/lib/application');
 const router = express.Router();
 
 require('../db/conn');
@@ -51,14 +52,19 @@ router.get('/', async (req, res) => {
       }catch(err){
         console.log(err)
       }
-
-
-
-
-
-      
-       
+ 
+    
   });
-  
+   // Login Route
+
+   router.post('/signin',async (req,res)=>{
+    //  console.log(req.body);
+    //  res.json({messege : "awesome"})
+     try{
+        const {email,password}= req.body;
+     }catch(err){
+          console.log(err);
+     }
+   });
 
 module.exports = router;
