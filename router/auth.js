@@ -62,6 +62,23 @@ router.get('/', async (req, res) => {
     //  res.json({messege : "awesome"})
      try{
         const {email,password}= req.body;
+        console.log(email);
+        console.log(password)
+       if(!email || !password){
+           return res.status(400).json({Error : "Please Fill Data "})
+       }
+
+       const userLogin = await user.findOne({email:email});
+       
+       console.log(userLogin);
+    
+       if(!userLogin){
+        res.status(400).json({error:"user Error"});
+       }else{
+        res.json({messege:"user Singn In Successfully"});
+       } 
+     
+
      }catch(err){
           console.log(err);
      }
