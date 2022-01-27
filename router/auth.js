@@ -42,12 +42,15 @@ router.get('/', async (req, res) => {
     const userExist =   await  user.findOne({email:email});
     if(userExist){
       return res.status(422).json({error :"Email Alredy Exits"}); 
+    }else if(password != cpassword){
+      return res.status(422).json({error :"password are not matching"});
+    }else{
+      const User = new user({name ,email, phone, work,  password, cpassword });
+      
+      await User.save();
+    res.status(201).json({messege:"user Register successfully "})
     }
-    const User = new user({name ,email, phone, work,  password, cpassword });
-     
-         await User.save();
-
-  res.status(201).json({messege:"user Register successfully "})
+ 
        
       }catch(err){
         console.log(err)
@@ -70,9 +73,9 @@ router.get('/', async (req, res) => {
         console.log(userLogin);
 
         if(!userLogin){
-          res.json({error : "user error "});
+          res.json({error : "User Not exist "});
         }else{ 
-          res.json({message : "user sigin Successfully"});
+          res.json({message : "user sigin Successfully"}); 
         }
        
      }catch(err) {
