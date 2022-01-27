@@ -1,5 +1,5 @@
 const express = require('express');
-const { route } = require('express/lib/application');
+
 const router = express.Router();
 
 require('../db/conn');
@@ -38,7 +38,7 @@ router.get('/', async (req, res) => {
       if(!name ||!email|| !phone || !work|| !password || !cpassword){
           return res.status(422).json({error :"Pleases Fill The Field Properly"});
       }
-      try{
+      try{   
     const userExist =   await  user.findOne({email:email});
     if(userExist){
       return res.status(422).json({error :"Email Alredy Exits"}); 
@@ -61,27 +61,23 @@ router.get('/', async (req, res) => {
     //  console.log(req.body);
     //  res.json({messege : "awesome"})
      try{
-        const {email,password}= req.body;
-        console.log(email);
-        console.log(password)
-       if(!email || !password){
-           return res.status(400).json({Error : "Please Fill Data "})
-       }
+      const {email, password} = req.body;
 
-       const userLogin = await user.findOne({email:email});
+      if(!email || !password) {
+        return res.status(400).json({error:"Please Fill The Data "})
+      }
+      const userLogin = await user.findOne({email:email});
+        console.log(userLogin);
+
+        if(!userLogin){
+          res.json({error : "user error "});
+        }else{ 
+          res.json({message : "user sigin Successfully"});
+        }
        
-       console.log(userLogin);
-    
-       if(!userLogin){
-        res.status(400).json({error:"user Error"});
-       }else{
-        res.json({messege:"user Singn In Successfully"});
-       } 
-     
-
-     }catch(err){
+     }catch(err) {
           console.log(err);
-     }
-   });
+     } 
+    });
 
 module.exports = router;
