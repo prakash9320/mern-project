@@ -30,7 +30,6 @@ const userSchema = new mongooose.Schema({
 
 
 // we are  hashing  the password
-
 userSchema.pre('save', async function(next){
  
    if(this.isModified('password')){
@@ -39,7 +38,7 @@ userSchema.pre('save', async function(next){
    }
    next();
 });
-
+  // collection creation 
 const User = mongooose.model('USER', userSchema);
 
 module.exports = User;
