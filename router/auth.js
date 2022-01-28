@@ -73,12 +73,7 @@ router.get('/', async (req, res) => {
       }
       const userLogin = await user.findOne({email:email});
         // console.log(userLogin);
-         if( userLogin){
-
-         }else{
-           
-         }
-        
+      
         if(userLogin){
          const  isMatch = await  bcrypt.compare(password,userLogin.password)
 
@@ -88,7 +83,7 @@ router.get('/', async (req, res) => {
             res.json({message : "user sigin Successfully"}); 
           }
         }else{
-          res.status(400).json({error : "Invalid Credientials "})
+          res.status(400).json({error : "Invalid Credientials"})
         }
 
         
