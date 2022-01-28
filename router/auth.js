@@ -40,6 +40,8 @@ router.get('/', async (req, res) => {
       }
       try{   
     const userExist =   await  user.findOne({email:email});
+        
+
     if(userExist){
       return res.status(422).json({error :"Email Alredy Exits"}); 
     }else if(password != cpassword){
@@ -71,6 +73,12 @@ router.get('/', async (req, res) => {
       }
       const userLogin = await user.findOne({email:email});
         // console.log(userLogin);
+         if( userLogin){
+
+         }else{
+           
+         }
+        
         if(userLogin){
          const  isMatch = await  bcrypt.compare(password,userLogin.password)
 
