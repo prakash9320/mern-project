@@ -32,10 +32,12 @@ app.get('/about', middleware, (req, res) => {
 });
 
 app.get('/contact', (req, res) => {
+    res.cookie("Test",'shukla')
     res.send(`Hello Contact world from the server`);
 });
 
 app.get('/signin', (req, res) => {
+    res.cookie("Token1",'shukla1')
     res.send(`Hello Login world from the server`);
 });
 
